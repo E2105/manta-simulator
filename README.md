@@ -1,4 +1,4 @@
-# The Manta Somulator
+# The Manta Simulator
 ## A Modified Simulator based on the UVV Simulator
 
-# Differences
+This is is not currently used.
