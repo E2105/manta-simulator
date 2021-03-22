@@ -4,10 +4,9 @@
   <include file="$(find uuv_gazebo_worlds)/launch/ocean_waves.launch"/>
 
   <!-- Spawns the Manta model -->
-  <include file="$(find manta_description)/launch/upload_manta.launch"/>
+  <include file="$(find manta_description)/launch/upload.launch"/>
 
   <!-- Begins the thruster manager -->
-  <!-- RENAME THIS TO CONTROL LATER -->
   <include file="$(find manta_thruster_manager)/launch/thruster_manager.launch"/> 
  
 </launch>
