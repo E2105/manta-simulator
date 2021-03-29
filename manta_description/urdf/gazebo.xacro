@@ -5,7 +5,7 @@
     <xacro:property name="manta_cob" value="0 0 0.05"/>
 
     <!-- Vehicle's actual volume (Gazebo cannot compute the volume out of the mesh) -->
-    <xacro:property name="manta_volume" value="0.024"/>
+    <xacro:property name="manta_volume" value="0.019"/>
 
     <!-- Describing the dimensions of the vehicle's bounding box -->
     <xacro:property name="manta_length" value="0.63"/>
@@ -45,20 +45,22 @@
         <!-- 1) Fossen's equation of motion -->
         <hydrodynamic_model>
           <type>fossen</type>
+          <!-- Added mass: see p.28 in Berg2012 -->
           <added_mass>
-            1 0 0 0 0 0
-            0 1 0 0 0 0
-            0 0 1 0 0 0
-            0 0 0 1 0 0
-            0 0 0 0 1 0
-            0 0 0 0 0 1
+            10.7727 0 0 0 0 0 
+            0 10.7727 0 0 0 0
+            0 0 49.7679 0 0 0
+            0 0 0 1.0092 0 0
+            0 0 0 0 1.0092 0
+            0  0  0  0  0  0
           </added_mass>
           <!--
             The linear damping coefficients can be provided as a diagonal (6 elements)
             or a full matrix (36 coefficients), like the added-mass coefficients above
+            Linear damping: see p.31 in Berg2012
           -->
           <linear_damping>
-            0 0 0 0 0 0
+            -19.5909 -19.5909 -50.5595 -13.3040 -13.2181 -1.1559
           </linear_damping>
           <!--
             The linear damping coefficients proportional to the forward speed
@@ -66,15 +68,16 @@
             like the added-mass coefficients above.
             This matrix is mostly useful for slender bodies (e.g. AUVs with torpedo shape)
           -->
-          <linear_damping_forward_speed>
+          <!-- <linear_damping_forward_speed>
             0 0 0 0 0 0
-          </linear_damping_forward_speed>
+          </linear_damping_forward_speed> -->
           <!--
             The quadratic damping coefficients can be provided as a diagonal (6 elements)
             or a full matrix (36 coefficients), like the added-mass coefficients above
+            Non-linear damping: see p.30 in Berg2012
           -->
           <quadratic_damping>
-            0 0 0 0 0 0
+            -5.1386 -5.1386 -26.1105 0 0 0
           </quadratic_damping>
 
           <!--
